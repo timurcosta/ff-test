@@ -4,7 +4,7 @@ import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { AuthService } from '@services/auth.service';
 import { DataService } from '@services/data.service';
 import { IResolution, IResolutionState } from '@services/mock-data.service';
-import { Observable } from 'rxjs';
+import { EMPTY, Observable } from 'rxjs';
 
 interface IResolutionOption {
   value: string;
@@ -95,6 +95,12 @@ export class MainComponent implements OnInit {
 
   getResolutionLabel(value: string): string {
     return this.resolutions.find((x) => x.value === value).label;
+  }
+
+  goBack(): void {
+    this.resolutionForm.reset();
+    this.getResolutionState(this.randomId);
+    this.resolutionState$ = EMPTY;
   }
 
   get randomId(): number {
