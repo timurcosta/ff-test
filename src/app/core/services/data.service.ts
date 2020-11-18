@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from '@env/environment';
 import { Observable } from 'rxjs';
-import { IResolutionState } from './mock-data.service';
+import { IResolution, IResolutionState } from './mock-data.service';
 
 const API_RESOLUTION = 'resolution';
 
@@ -12,16 +12,20 @@ const API_RESOLUTION = 'resolution';
 export class DataService {
   constructor(private http: HttpClient) {}
 
-  getResolution(id: number): Observable<any> {
-    return this.http.get(`${environment.apiUrl}/${API_RESOLUTION}/${id}`);
+  getResolution(id: number): Observable<IResolution> {
+    return this.http.get<IResolution>(
+      `${environment.apiUrl}/${API_RESOLUTION}/${id}`
+    );
   }
 
-  getResolutionState(id: number): Observable<any> {
-    return this.http.get(`${environment.apiUrl}/${API_RESOLUTION}/state/${id}`);
+  getResolutionState(id: number): Observable<IResolutionState> {
+    return this.http.get<IResolutionState>(
+      `${environment.apiUrl}/${API_RESOLUTION}/state/${id}`
+    );
   }
 
-  setResolutionState(payload: IResolutionState): Observable<any> {
-    return this.http.post(
+  setResolutionState(payload: IResolutionState): Observable<IResolutionState> {
+    return this.http.post<IResolutionState>(
       `${environment.apiUrl}/${API_RESOLUTION}/state`,
       payload
     );
