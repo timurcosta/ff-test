@@ -12,11 +12,11 @@
         <nz-form-control nzErrorTip="Пожалуйста выберите резолюцию!">
           <nz-select
             formControlName="resolution"
-            nzPlaceHolder="Выбрать резолюцию"
+            nzPlaceHolder="Выбрать значение резолюции"
             nzAllowClear
           >
             <nz-option
-              *ngFor="let resolution of resolutions"
+              *ngFor="let resolution of resolutions; trackBy: trackByFn"
               [nzValue]="resolution.value"
               [nzLabel]="resolution.label"
             ></nz-option>

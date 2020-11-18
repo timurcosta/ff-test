@@ -37,6 +37,10 @@ export class AuthService {
     return this.load('token');
   }
 
+  get isAuth(): boolean {
+    if (this.user && this.token === TOKEN_KEY) return true;
+  }
+
   save(name: string, value: string): void {
     localStorage.setItem(name, value);
   }

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { AuthService } from '@services/auth.service';
@@ -21,6 +21,7 @@ enum StateEnum {
   selector: 'app-main',
   templateUrl: './main.component.html',
   styleUrls: ['./main.component.styl'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class MainComponent implements OnInit {
   resolutionForm: FormGroup;
@@ -98,5 +99,9 @@ export class MainComponent implements OnInit {
 
   get randomId(): number {
     return Math.floor(Math.random() * 1000);
+  }
+
+  trackByFn(index: number): number {
+    return index;
   }
 }

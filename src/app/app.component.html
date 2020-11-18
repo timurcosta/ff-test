@@ -1,5 +1,17 @@
 <nz-layout>
-  <nz-header><div class="logo"></div></nz-header>
+  <nz-header
+    ><div class="logo"></div>
+    <div class="profile">
+      <nz-avatar
+        *ngIf="isAuth"
+        [nzText]="user"
+        [nzSize]="64"
+        nz-dropdown
+        [nzDropdownMenu]="menu"
+        class="avatar"
+      ></nz-avatar>
+    </div>
+  </nz-header>
   <nz-layout>
     <nz-content>
       <router-outlet></router-outlet>
@@ -7,3 +19,8 @@
   </nz-layout>
   <nz-footer>© 2011 - {{ currentYear }} ООО ИК «Фридом Финанс» </nz-footer>
 </nz-layout>
+<nz-dropdown-menu #menu="nzDropdownMenu">
+  <ul nz-menu nzSelectable>
+    <li (click)="logout()" nz-menu-item>Выход</li>
+  </ul>
+</nz-dropdown-menu>

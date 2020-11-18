@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { AuthService, TOKEN_KEY } from '@services/auth.service';
+import { AuthService } from '@services/auth.service';
 
 @Component({
   selector: 'app-auth',
@@ -17,7 +17,7 @@ export class AuthComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    if (this.isAuth) this.router.navigate(['/main']);
+    if (this.authService.isAuth) this.router.navigate(['/main']);
     this.authForm = this.fb.group({
       login: [null, [Validators.required]],
       password: [null, [Validators.required]],
@@ -38,11 +38,5 @@ export class AuthComponent implements OnInit {
       this.authService.login(this.fv);
       this.router.navigate(['/main']);
     }
-  }
-
-  get isAuth(): boolean {
-    const user = this.authService.user;
-    const token = this.authService.token;
-    if (user && token === TOKEN_KEY) return true;
   }
 }

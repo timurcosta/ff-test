@@ -11,6 +11,8 @@ import en from '@angular/common/locales/en';
 import { AuthComponent } from '@home/auth/auth.component';
 import { MainComponent } from '@home/main/main.component';
 import { GlobalErrorHandler } from '@errors/global-error.handler';
+import { fakeBackendProvider } from '@interceptors/fake-backend.interceptor';
+import { MockDataService } from '@services/mock-data.service';
 
 /** NZ */
 import { NZ_I18N } from 'ng-zorro-antd/i18n';
@@ -22,8 +24,8 @@ import { NzInputModule } from 'ng-zorro-antd/input';
 import { NzButtonModule } from 'ng-zorro-antd/button';
 import { NzSelectModule } from 'ng-zorro-antd/select';
 import { NzMessageModule } from 'ng-zorro-antd/message';
-import { fakeBackendProvider } from '@interceptors/fake-backend.interceptor';
-import { MockDataService } from '@services/mock-data.service';
+import { NzAvatarModule } from 'ng-zorro-antd/avatar';
+import { NzDropDownModule } from 'ng-zorro-antd/dropdown';
 
 registerLocaleData(en);
 
@@ -44,6 +46,8 @@ registerLocaleData(en);
     NzButtonModule,
     NzSelectModule,
     NzMessageModule,
+    NzAvatarModule,
+    NzDropDownModule,
   ],
   providers: [
     { provide: NZ_I18N, useValue: en_US },
