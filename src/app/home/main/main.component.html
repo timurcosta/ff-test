@@ -1,0 +1,58 @@
+<article class="main">
+  <ng-container *ngIf="!(resolutionState$ | async)">
+    <section
+      *ngIf="resolution$ | async as resolution"
+      class="create-resolution"
+    >
+      <h1>{{ resolution.title }}</h1>
+      <p>
+        {{ resolution.text }}
+      </p>
+      <form nz-form [formGroup]="resolutionForm" class="login-form">
+        <nz-form-control nzErrorTip="Пожалуйста выберите резолюцию!">
+          <nz-select
+            formControlName="resolution"
+            nzPlaceHolder="Выбрать резолюцию"
+            nzAllowClear
+          >
+            <nz-option
+              *ngFor="let resolution of resolutions"
+              [nzValue]="resolution.value"
+              [nzLabel]="resolution.label"
+            ></nz-option>
+          </nz-select>
+        </nz-form-control>
+        <nz-form-control>
+          <textarea
+            rows="4"
+            nz-input
+            formControlName="comment"
+            placeholder="Комментарий"
+          ></textarea>
+        </nz-form-control>
+        <div class="button-container">
+          <button type="submit" (click)="approve()" nz-button nzType="primary">
+            Утвердить
+          </button>
+          <button type="submit" (click)="reject()" nz-button nzType="default">
+            Отклонить
+          </button>
+        </div>
+      </form>
+    </section>
+  </ng-container>
+  <section
+    *ngIf="resolutionState$ | async as resolutionState"
+    class="view-resolution"
+  >
+    <h1>Резолюция #{{ resolutionState.id }}</h1>
+    <h2>Статус: {{ resolutionState.state ? "принята" : "отклонена" }}!</h2>
+    <p>
+      Значение резолюции: {{ getResolutionLabel(resolutionState.resolution) }}
+    </p>
+    <p *ngIf="resolutionState.comment">
+      Комментарий: {{ resolutionState.comment }}
+    </p>
+    <p>Автор: {{ resolutionState.approver }}</p>
+  </section>
+</article>

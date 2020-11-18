@@ -1,0 +1,30 @@
+/* To learn more about this file see: https://angular.io/config/tsconfig. */
+{
+  "compileOnSave": false,
+  "compilerOptions": {
+    "baseUrl": "./",
+    "outDir": "./dist/out-tsc",
+    "sourceMap": true,
+    "declaration": false,
+    "downlevelIteration": true,
+    "experimentalDecorators": true,
+    "moduleResolution": "node",
+    "importHelpers": true,
+    "target": "es2015",
+    "paths": {
+      "@home/*": ["src/app/home/*"],
+      "@services/*": ["src/app/core/services/*"],
+      "@interceptors/*": ["src/app/core/interceptors/*"],
+      "@guards/*": ["src/app/core/guards/*"],
+      "@errors/*": ["src/app/core/errors/*"],
+      "@core/*": ["src/app/core/*"],
+      "@paths/*": ["src/app/core/paths/*"],
+      "@env/*": ["src/environments/*"],
+    },
+    "module": "es2020",
+    "lib": [
+      "es2018",
+      "dom"
+    ]
+  }
+}
